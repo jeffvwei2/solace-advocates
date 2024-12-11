@@ -19,7 +19,7 @@ export default function Home() {
     });
   }, []);
 
-  const handleSearch = (searchTerm: string) => {
+  const handleSearch =  (searchTerm: string) => {
     console.log("filtering advocates...");
     const filteredAdvocates = advocates.filter((advocate:Advocate) => {
       return (
@@ -35,8 +35,8 @@ export default function Home() {
   };
 
   return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
+    <main className="m-2">
+      <h1 className="m-4 text-4xl text-gray-900 md:text-5xl lg:text-6xl text-center">Solace Advocates</h1>
       <SearchBar handleSearch={handleSearch} />
       <AdvocateTable advocates={filteredAdvocates} />
     </main>
