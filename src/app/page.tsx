@@ -10,28 +10,34 @@ export default function Home() {
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
 
   useEffect(() => {
-    console.log("fetching advocates...");
-    fetch("/api/advocates").then((response) => {
-      response.json().then((jsonResponse) => {
-        setAdvocates(jsonResponse.data);
-        setFilteredAdvocates(jsonResponse.data);
-      });
-    });
+    handleInitialFetch()
   }, []);
 
-  const handleSearch =  (searchTerm: string) => {
-    console.log("filtering advocates...");
-    const filteredAdvocates = advocates.filter((advocate:Advocate) => {
-      return (
-        advocate.firstName.includes(searchTerm) ||
-        advocate.lastName.includes(searchTerm) ||
-        advocate.city.includes(searchTerm) ||
-        advocate.degree.includes(searchTerm) ||
-        advocate.specialties.includes(searchTerm)
-      );
-    });
+  const handleInitialFetch = async () => {
+    const response =  await fetch("/api/advocates")
+    const { data } = await response.json()
+    setAdvocates(data)
+    setFilteredAdvocates(data)
+  }
 
-    setFilteredAdvocates(filteredAdvocates);
+  const handleSearch =  async (searchTerm: string) => {
+    if(!searchTerm) {
+      setFilteredAdvocates(advocates)
+      return
+    }
+    
+    console.log("filtering advocates...", searchTerm);
+
+    const response = await fetch("/api/advocates", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ searchTerm })
+    })
+    const {data} = await response.json()
+
+    setFilteredAdvocates(data);
   };
 
   return (
