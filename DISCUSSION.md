@@ -16,6 +16,7 @@ This is Jeffrey Wei's submission for Solace.
   - I used tsvector and tsquery to accomplish a more efficient search
 
 ### Things I would do with more time:
+- Error handling for API and DB interactions. I didnt get around to that in time.
 - I would add indexing for optimized searching
   - Discussing more dedicated search functions or even column based searching would also help optimize a scaled version of this
 - Add ordering for specialties - ex. "Chronic Pain" always being first- because they are randomly ordered right now
