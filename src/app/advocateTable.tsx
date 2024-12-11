@@ -6,10 +6,14 @@ interface AdvocateTableProps {
   advocates: Advocate[]
 }
 
-export const styles = {
+const styles = {
   th: "px-6 py-3 text-left text-sm font-medium text-gray-600 border-b",
   td: "px-6 py-4 text-sm text-gray-800 border-b",
 };
+
+const formatPhone = (phone:string) => {
+  return `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6)}`
+}
 
 export default function AdvocateTable({ advocates }: AdvocateTableProps){
   return (
@@ -44,7 +48,7 @@ export default function AdvocateTable({ advocates }: AdvocateTableProps){
                   </ul>
                 </td>
                 <td className={styles.td}>{advocate.yearsOfExperience}</td>
-                <td className={styles.td}>{advocate.phoneNumber}</td>
+                <td className={styles.td}>{formatPhone(String(advocate.phoneNumber))}</td>
               </tr>
             );
           })}
