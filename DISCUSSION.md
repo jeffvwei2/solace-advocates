@@ -1,6 +1,7 @@
 ## Solace Candidate Submission
 
 This is Jeffrey Wei's submission for Solace. 
+https://github.com/jeffvwei2/solace-advocates
 
 ### Things I changed:
 - Enabled the database
